@@ -34,8 +34,8 @@ ui.navigation = '
     var navigation = document.getElementById('navigation');
     navigation.innerHTML += ui.navigation;
     
-    ui.createAccount =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+    ui.createAccount = '
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Create Account</div>
             <div class="card-body">
                 Name<br>
@@ -48,13 +48,13 @@ ui.navigation = '
                 <div id='createStatus'></div>
             </div>
         </div>
-    ;
+    ';
     
-    ui.login =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+    ui.login = '
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Login</div>
             <div class="card-body">
-                Email Address<br>
+                Email<br>
                 <input type="input" class="form-control" id="loginEmail" placeholder="Enter Your Email"><br>
                 Password<br>
                 <input type="password" class="form-control" id="loginPassword" placeholder="Enter Your Password"><br>
@@ -62,13 +62,13 @@ ui.navigation = '
                 <div id='loginStatus'></div>
             </div>
         </div>
-    ;
+    ';
     
-    ui.deposit =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+    ui.deposit = '
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Deposit</div>
             <div class="card-body">
-                Email Address<br>
+                Email<br>
                 <input type="input" class="form-control" id="depositEmail" placeholder="Enter Your Email"><br>
                 Amount<br>
                 <input type="number" class="form-control" id="depositAmount" placeholder="Enter Amount"><br>
@@ -76,13 +76,13 @@ ui.navigation = '
                 <div id='depositStatus'></div>
             </div>
         </div>
-    ;
+    ';
     
-     ui.withdraw =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+     ui.withdraw = '
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Withdraw</div>
             <div class="card-body">
-                Email Address<br>
+                Email<br>
                 <input type="input" class="form-control" id="withdrawEmail" placeholder="Enter Your Email"><br>
                 Amount<br>
                 <input type="number" class="form-control" id="withdrawAmount" placeholder="Enter Amount"><br>
@@ -90,36 +90,36 @@ ui.navigation = '
                 <div id='withdrawStatus'></div>
             </div>
         </div>
-    ;
+    ';
     
-    ui.balance =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+    ui.balance = '
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Balance</div>
             <div class="card-body">
-                Email Address<br>
+                Email<br>
                 <input type="input" class="form-control" id="balanceEmail" placeholder="Enter Your Email"><br>
                 <button type="submit" class="btn" onclick="balance()">Show Balance</button>
                 <div id='balanceStatus'></div>
             </div>
         </div>
-    ;
+    ';
     
-    ui.default =
-        <div class="card text-black bg-dark mb-3" style="max-width: 18rem;">
+    ui.default = '
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
             <div class="card-header">Home</div>
             <div class="card-body">
-                <h5 class="card-title">Welcome to Bank of Horowitz</h5>
+                <h5 class="card-title">Welcome to the Bank of Horowitz</h5>
                 <p class="card-text">Please use this site for all your banking needs. Security now guaranteed.</p>
                 <img src="bank.png" class="img-fluid" alt="Responsive image">
             </div>
         </div>
-    ;
+    ';
     
-    ui.allData =
+    ui.allData = '
         <h5>All Data in Store</h5>
         <button type="button" class="btn btn-secondary" onclick="allData()">Show All Data</button>
         <div id="allDataStatus"></div>
-    ;
+    ';
     
     var loadCreateAccount = function(){
         target.innerHTML = ui.createAccount;
