@@ -1,5 +1,7 @@
 var ui = {};
 
+var target = document.getElementById('content'); // Replace 'content' with the ID of your target element
+
 ui.navigation = ' \
     <nav class="navbar navbar-expand-lg navbar-light bg-light"  \
           <a class="navbar-brand" href="#" onclick="defaultModule()">Home</a> \
