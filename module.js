@@ -28,7 +28,7 @@ ui.navigation = ' \
                               <a class="nav-link" href="#AllData" onclick="loadAllData()">AllData</a> \
                           </li> \
                       </ul> \
-                  </div></> \
+                  </div> \
     </nav> \
 ';
 
