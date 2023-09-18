@@ -45,7 +45,7 @@ ui.createAccount = ' \
                         <input type="input" class="form-control" id="email" placeholder="Enter Your Email"><br> \
                             Password<br> \
                                 <input type="password" class="form-control" id="password" placeholder="Enter Your Password"><br> \
-                                    <button type="submit" id />"submit" class="btn" onclick="create()">Create Account</button> \
+                                <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button> \
                                     <div id="createStatus"></div> \
                                 </div> \
                             </div> \
