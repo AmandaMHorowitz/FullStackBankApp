@@ -10,7 +10,7 @@ ui.navigation = ' \
               </button><div class="collapse navbar-collapse" id="navbarNav"> \
                       <ul class="navbar-nav"> \
                           <li class="nav-item"> \
-                              <a class="nav-link" href="#CreateAccount" onclick="loadCreateAccount()" id="createAccount">Create Account</a> \
+                              <a class="nav-link" href="#/CreateAccount/" onclick="loadCreateAccount()" id="createAccount">Create Account</a> \
                           </li> \
                           <li class="nav-item"> \
                               <a class="nav-link" href="#" onclick="loadLogin()" id="login">Login</a> \
