@@ -27,7 +27,7 @@ ui.navigation = ' \
                           </li> \
                       </ul> \
                   </div></> \
-    /nav> \
+    </nav> \
 ';
 
 var navigation = document.getElementById('navigation');
