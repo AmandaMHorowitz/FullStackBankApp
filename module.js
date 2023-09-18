@@ -1,6 +1,6 @@
-var ui = {};
+var target;
 
-var target = document.getElementById('content'); // Replace 'content' with the ID of your target element
+var ui = {};
 
 ui.navigation = ' \
     <nav class="navbar navbar-expand-lg navbar-light bg-light"  \
