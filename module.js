@@ -59,7 +59,7 @@ ui.login = ' \
             <input type="input" class="form-control" id="loginEmail" placeholder="Enter Your Email"><br> \
                 Password<br> \
                     <input type="password" class="form-control" id="loginPassword" placeholder="Enter Your Password"><br> \
-                        <button type="submit" id />"submit" class="btn" onclick="login()">Login</button> \
+                        <button type="submit" id="submit" class="btn" onclick="login()">Login</button> \
                         <div id="loginStatus"></div> \
                     </div> \
                 </div> \
