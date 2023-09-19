@@ -40,16 +40,16 @@ ui.createAccount =' \
     <div class="card-header">Create Account</div> \
     <div class="card-body"> \
         Name<br> \
-        <input type="input" class="form-control" id="name" placeholder="Enter Your Name"><br> \
-        Email Address<br> \
-        <input type="input" class="form-control" id="email" placeholder="Enter Your Email"><br> \
-        Password<br> \
-        <input type="password" class="form-control" id="password" placeholder="Enter Your Password"><br> \
-        <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button> \
-        <div id="createStatus"></div> \
-    </div> \
-    </div> \
-';
+            <input type="input" class="form-control" id="name" placeholder="Enter Your Name"><br> \
+                Email Address<br> \
+                    <input type="input" class="form-control" id="email" placeholder="Enter Your Email"><br> \
+                        Password<br> \
+                            <input type="password" class="form-control" id="password" placeholder="Enter Your Password"><br> \
+                            <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button> \
+                            <div id="createStatus"></div> \
+                        </div> \
+                    </div> \
+                    ';
 
 ui.login = ' \
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;"> \
@@ -122,18 +122,18 @@ ui.allData = ' \
 <div id="allDataStatus"></div> \
 ';
 
-var loadCreateAccount = function(){target.innerHTML = ui.createAccount};
+var loadCreateAccount = function () { target.innerHTML = ui.createAccount };
 
-var loadLogin = function(){target.innerHTML = ui.login};
+var loadLogin = function () { target.innerHTML = ui.login };
 
-var loadDeposit = function(){target.innerHTML = ui.deposit};
+var loadDeposit = function () { target.innerHTML = ui.deposit };
 
-var loadWithdraw = function(){target.innerHTML = ui.withdraw};
+var loadWithdraw = function () { target.innerHTML = ui.withdraw };
 
-var loadBalance = function(){target.innerHTML = ui.balance};
+var loadBalance = function () { target.innerHTML = ui.balance };
 
-var defaultModule = function(){target.innerHTML = ui.default};
+var defaultModule = function () { target.innerHTML = ui.default };
 
-var loadAllData = function(){target.innerHTML = ui.allData};
+var loadAllData = function () { target.innerHTML = ui.allData };
 
 defaultModule();
