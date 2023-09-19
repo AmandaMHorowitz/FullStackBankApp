@@ -35,20 +35,20 @@ ui.navigation = ' \
 var navigation = document.getElementById('navigation');
 navigation.innerHTML += ui.navigation;
     
-ui.createAccount = ' \
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;"> \
-        <div class="card-header">Create Account</div> \
-        <div class="card-body"> \
-            Name<br> \
-            <input type="input" class="form-control" id="name" placeholder="Enter Your Name"><br> \
-            Email Address<br> \
-            <input type="input" class="form-control" id="email" placeholder="Enter Your Email"><br> \
-            Password<br> \
-            <input type="password" class="form-control" id="password" placeholder="Enter Your Password"><br> \
-            <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button> \
-            <div id="createStatus"></div> \
-        </div> \
-    </div> \
+ui.createAccount = '
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Create Account</div>
+        <div class="card-body">
+            Name<br>
+            <input type="input" class="form-control" id="name" placeholder="Enter Your Name"><br>
+            Email Address<br>
+            <input type="input" class="form-control" id="email" placeholder="Enter Your Email"><br>
+            Password<br>
+            <input type="password" class="form-control" id="password" placeholder="Enter Your Password"><br>
+            <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button>
+            <div id="createStatus"></div>
+        </div>
+    </div>
 ';
 
 ui.login = ' \
