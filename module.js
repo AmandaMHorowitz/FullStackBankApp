@@ -136,4 +136,4 @@ var defaultModule = function () { target.innerHTML = ui.default };
 
 var loadAllData = function () { target.innerHTML = ui.allData };
 
-loadCreateAccount();
+defaultModule();
