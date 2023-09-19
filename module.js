@@ -122,18 +122,18 @@ ui.allData = ' \
 <div id="allDataStatus"></div> \
 ';
 
-var loadCreateAccount = function () { target.innerHTML = ui.createAccount };
+var loadCreateAccount = function(){ target.innerHTML = ui.createAccount};
 
-var loadLogin = function () { target.innerHTML = ui.login };
+var loadLogin = function(){ target.innerHTML = ui.login};
 
-var loadDeposit = function () { target.innerHTML = ui.deposit };
+var loadDeposit = function(){ target.innerHTML = ui.deposit};
 
-var loadWithdraw = function () { target.innerHTML = ui.withdraw };
+var loadWithdraw = function(){ target.innerHTML = ui.withdraw};
 
-var loadBalance = function () { target.innerHTML = ui.balance };
+var loadBalance = function(){ target.innerHTML = ui.balance};
 
-var defaultModule = function () { target.innerHTML = ui.default };
+var defaultModule = function(){ target.innerHTML = ui.default};
 
-var loadAllData = function () { target.innerHTML = ui.allData };
+var loadAllData = function (){ target.innerHTML = ui.allData};
 
 defaultModule();
