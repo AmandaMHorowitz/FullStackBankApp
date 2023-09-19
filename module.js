@@ -36,19 +36,14 @@ var navigation = document.getElementById('navigation');
 navigation.innerHTML += ui.navigation;
     
 ui.createAccount = ' \
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;"> \
-        <div class="card-header">Create Account</div> \
-        <div class="card-body"> \
-            Name<br/> \
-            <input type="input" class="form-control" id="name" placeholder="Enter name"><br/> \
-            Email Address<br/> \
-            <input type="input" class="form-control" id="email" placeholder="Enter email"><br/> \
-            Password<br/> \
-            <input type="password" class="form-control" id="password" placeholder="Enter password"><br/> \
-            <button type="submit" id="submit" class="btn" onclick="create()">Create Account</button> \
-            <div id="createStatus"></div> \
-        </div> \
-    </div> \
+<div class="card bg-light mb-3" style="max-width: 18rem;"> \
+<div class="card-header">Home</div> \
+<div class="card-body"> \
+    <h5 class="card-title">Welcome to the Bank of Horowitz</h5> \
+    <p class="card-text">I am slowly going crazy.</p> \
+    <img src="bank.png" class="img-fluid" alt="Responsive image"> \
+    </></div> \
+</div> \
 ';
 
 ui.login = ' \
