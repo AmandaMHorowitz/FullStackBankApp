@@ -9,7 +9,7 @@ app.use(cors());
 // create user account
 app.get('/account/create/:name/:email/:password', function (req, res) {
     res.send({
-        name:       req.params.name
+        name:       req.params.name,
         email:      req.params.email,
         password:   req.params.password
     });
