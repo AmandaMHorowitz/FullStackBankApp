@@ -14,3 +14,20 @@ app.get('/account/create/:name/:email/:password', function (req, res) {
         password:   req.params.password
     });
 });
+
+// login user
+app.get('/account/login/:email/:password', function (req, res) {
+    res.send({
+        email:      req.params.string,
+        password:   req.params.password
+    });
+});
+
+// all accounts
+app.get('/account/all', function (req, res) {
+    res.send({
+        name:       'Horowitz',
+        email:      'Horowitz@gmail.com',
+        password:   'secret'
+    });
+});
