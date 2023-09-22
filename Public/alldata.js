@@ -1,5 +1,16 @@
 function AllData(){
-    const ctx = React.useContext(UserContext);
+    const [data, setData] = React.useState('');
+
+    React.useEffect(() => {
+
+      // fetch all accounts from API
+      fetch('/account/all')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setData(JSON.stringify(data));
+        });
+    },  []);
     
     function buildCard() {
       for (let i = 0; i < ctx.users.length; i++) {
@@ -10,35 +21,6 @@ function AllData(){
     return (
       <>
         <h5>All Data in Store</h5>
-        {JSON.stringify(ctx)}<br/>
-        <script type = "text/javascript"> buildCard() </script> 
-        <div class="card-group">
-          
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Name</h5>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Email Address</h5>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Password</h5>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Balance</h5>
-            </div>
-          </div>
-          
-        </div>
-      </>
-    ); 
-  }
+        {data}
+      </>;
+};
