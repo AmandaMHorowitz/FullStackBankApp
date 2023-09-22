@@ -22,5 +22,5 @@ function AllData(){
       <>
         <h5>All Data in Store</h5>
         {data}
-      </>;
+      </>);
 };
