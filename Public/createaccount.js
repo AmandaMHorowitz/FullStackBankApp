@@ -22,9 +22,6 @@ function CreateAccount(){
   
     function handleCreate(){
       console.log(name,email,password);
-      if (!validate(name,     'name'))     return;
-      if (!validate(email,    'email'))    return;
-      if (!validate(password, 'password')) return;
       const url = '/account/create/${name}/${email}/${password}';
       (async () => {
           var res = await fetch(url);
