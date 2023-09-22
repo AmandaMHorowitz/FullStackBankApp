@@ -3,7 +3,7 @@ const url         = 'mongodb://localhost:27017';
 let db            = null;
  
 // connect to mongo
-MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
+MongoClient.connect(url, { useUnifiedTopology: true }, function (err, client) {
     console.log("Connected successfully to db server");
 
     // connect to myproject database
@@ -57,8 +57,6 @@ function update(email, amount){
                     err ? reject(err) : resolve(documents);
                 }
             );            
-
-
     });    
 }
 
