@@ -10,7 +10,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 
     //new user
     var name = 'user' + Math.floor(Math.random()*10000);
-    var email = name + '@mit.edu';
+    var email = name + '@umass.edu';
 
     //insert into customer table
     var collection = db.collection('customers');
@@ -23,9 +23,9 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
         .collection('customers')
         .find()
         .toArray(function(err, docs) {
-            console.log('Collection: ', docs);
+            console.log('Collection:', docs);
           
-            // clear up
+            // clean up
             client.close();
         });
 });
