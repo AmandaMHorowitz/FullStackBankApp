@@ -1,15 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = 'mongodb://127.0.0.1:27017';
-const client = new MongoClient(uri);
+const url = 'mongodb://localhost:27017';
 
-// Connect to the MongoDB cluster
-client.connect(function(err) {
-    if (err) {
-        console.error('Error connecting to MongoDB:', err);
-        return;
-    }
-
-    console.log('Connected to MongoDB!');
+MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
+    console.log('Connected!');
 
     //database Name
     const dbName = 'myproject';
