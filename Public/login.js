@@ -1,54 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-
 function Login(){
-    // Your web app's Firebase configuration, get it from your firebase project settings page on the General tab.
-    const firebaseConfig = {
-        apiKey: "AIzaSyAdsv0Bt16GFEN7Ph0qpTs-LtzW6fVoAIM",
-        authDomain: "fullstackbankapp.firebaseapp.com",
-        projectId: "fullstackbankapp",
-        storageBucket: "fullstackbankapp.appspot.com",
-        messagingSenderId: "706429237779",
-        appId: "1:706429237779:web:892cc45ee3ffa01b5f5de6",
-        measurementId: "G-B61XLJSLZM"
-      };
-
-    // Initialize Firebase
-    // const app = initializeApp(firebaseConfig);
-    // const analytics = getAnalytics(app);
-    // // Initialize Firebase Authentication and get a reference to the service
-    // const auth = getAuth(app);
-
-    // // TODO: initialize provider for google auth
-    // const provider = new GoogleAuthProvider();
-
-    // console.log("app initialized...");
-
-    // get elements
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const login = document.getElementById("login");
-    const signup = document.getElementById("signup");
-    const logout = document.getElementById("logout");
-    const loggedInStatus = document.getElementById("loggedInStatus");
-    const googlelogin = document.getElementById("googlelogin");
-
     const [show, setShow]     = React.useState(true);
-    const [status, setStatus] = React.useState('');  
-
-    // login
-    login.addEventListener("click", (e) => {
-        signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            // Signed in
-            console.log(userCredential);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    });
-    
+    const [status, setStatus] = React.useState('');    
+  
     return (
       <Card
         bgcolor="dark"
