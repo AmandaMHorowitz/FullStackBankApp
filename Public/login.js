@@ -29,9 +29,30 @@ function Login(){
 
     console.log("app initialized...");
 
+    // get elements
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const login = document.getElementById("login");
+    const signup = document.getElementById("signup");
+    const logout = document.getElementById("logout");
+    const loggedInStatus = document.getElementById("loggedInStatus");
+    const googlelogin = document.getElementById("googlelogin");
+
     const [show, setShow]     = React.useState(true);
-    const [status, setStatus] = React.useState('');    
-  
+    const [status, setStatus] = React.useState('');  
+
+    // login
+    login.addEventListener("click", (e) => {
+        signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            // Signed in
+            console.log(userCredential);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+    
     return (
       <Card
         bgcolor="dark"
