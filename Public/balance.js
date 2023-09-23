@@ -31,22 +31,26 @@ function Balance(){
     const [email, setEmail]       = React.useState('');
     const [balance, setBalance] = React.useState('');
 
-    function handle(){
-        fetch(`/account/findOne/${email}`)
-        .then(response => response.text())
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                props.setStatus(text);
-                props.setShow(false);
-                setBalance(user.balance);
-                console.log('JSON:', data);
-            } catch(err) {
-                props.setStatus(text)
-                console.log('err:', text);
-            }
+    function handle() {
+      fetch(`/account/findOne/${email}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Data from server:', data);
+          console.log('Balance from server:', data.balance)  // Add this log
+  
+          if (data && data.balance !== undefined) {
+            console.log('Setting balance:', data.balance);  // Add this log
+            setBalance(data.balance);
+            props.setShow(false);
+            props.setStatus('Your balance is: $' + data.balance);
+          } else {
+            props.setStatus('Failed to retrieve balance');
+          }
+        })
+        .catch(err => {
+          props.setStatus('Error while fetching balance');
         });
-      }
+    }
 
       return (<>
     

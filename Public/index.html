@@ -12,6 +12,8 @@
 
     <!-- don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js"></script>
   </head>
   <body>
     <!-- we will put our teact component inside this div -->
@@ -22,6 +24,20 @@
     <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-router@5.2.1/umd/react-router.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-router-dom@5.2.1/umd/react-router-dom.min.js" crossorigin></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyAdsv0Bt16GFEN7Ph0qpTs-LtzW6fVoAIM",
+        authDomain: "fullstackbankapp.firebaseapp.com",
+        projectId: "fullstackbankapp",
+        storageBucket: "fullstackbankapp.appspot.com",
+        messagingSenderId: "706429237779",
+        appId: "1:706429237779:web:892cc45ee3ffa01b5f5de6"
+      };
+      
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
     <!-- load our react component. -->
     <script src="context.js"        defer type="text/babel"></script>
