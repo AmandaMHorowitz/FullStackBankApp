@@ -1,4 +1,34 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js";
+
 function Login(){
+    // Your web app's Firebase configuration, get it from your firebase project settings page on the General tab.
+    const firebaseConfig = {
+        apiKey: "AIzaSyAdsv0Bt16GFEN7Ph0qpTs-LtzW6fVoAIM",
+        authDomain: "fullstackbankapp.firebaseapp.com",
+        projectId: "fullstackbankapp",
+        storageBucket: "fullstackbankapp.appspot.com",
+        messagingSenderId: "706429237779",
+        appId: "1:706429237779:web:892cc45ee3ffa01b5f5de6",
+        measurementId: "G-B61XLJSLZM"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // Initialize Firebase Authentication and get a reference to the service
+    const auth = getAuth(app);
+
+    // TODO: initialize provider for google auth
+    const provider = new GoogleAuthProvider();
+
+    console.log("app initialized...");
+
     const [show, setShow]     = React.useState(true);
     const [status, setStatus] = React.useState('');    
   
