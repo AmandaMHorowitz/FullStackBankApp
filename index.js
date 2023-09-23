@@ -1,3 +1,30 @@
+// Import the functions you need from the SDKs you need
+const { initializeApp } = require('firebase/app');
+const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAdsv0Bt16GFEN7Ph0qpTs-LtzW6fVoAIM",
+    authDomain: "fullstackbankapp.firebaseapp.com",
+    projectId: "fullstackbankapp",
+    storageBucket: "fullstackbankapp.appspot.com",
+    messagingSenderId: "706429237779",
+    appId: "1:706429237779:web:892cc45ee3ffa01b5f5de6",
+    measurementId: "G-B61XLJSLZM"
+  };
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+function handleFirebaseLogin(email, password) {
+    const auth = getAuth(firebaseApp);
+    return signInWithEmailAndPassword(auth, email, password);
+}
+  
+function handleFirebaseSignUp(email, password) {
+    return firebaseApp.auth().createUserWithEmailAndPassword(email, password);
+}
+
 var express = require('express');
 var app     = express();
 var cors    = require('cors');
@@ -86,6 +113,20 @@ app.get('/account/update/:email/:amount', function (req, res) {
             res.send(response);
     });    
 });
+
+app.get('/account/update/:email/:amount', function (req, res) {
+    var amount = Number(req.params.amount);
+    dal.update(req.params.email, amount)
+      .then((response) => {
+        console.log(response);
+        // Send the updated balance in the response
+        res.send({ balance: response.value.balance, amount: amount });
+      })
+      .catch((error) => {
+        console.log('Error updating balance:', error);
+        res.status(500).send('Error updating balance');
+      });
+  });
 
 // all accounts
 app.get('/account/all', function (req, res) {
