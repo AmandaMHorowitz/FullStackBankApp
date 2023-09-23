@@ -1,11 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "https://www.gstatic.com/firebasejs/9.9.1/firebase-auth.js";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
 function Login(){
     // Your web app's Firebase configuration, get it from your firebase project settings page on the General tab.
@@ -17,17 +12,18 @@ function Login(){
         messagingSenderId: "706429237779",
         appId: "1:706429237779:web:892cc45ee3ffa01b5f5de6",
         measurementId: "G-B61XLJSLZM"
-    };
+      };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    // Initialize Firebase Authentication and get a reference to the service
-    const auth = getAuth(app);
+    // const app = initializeApp(firebaseConfig);
+    // const analytics = getAnalytics(app);
+    // // Initialize Firebase Authentication and get a reference to the service
+    // const auth = getAuth(app);
 
-    // TODO: initialize provider for google auth
-    const provider = new GoogleAuthProvider();
+    // // TODO: initialize provider for google auth
+    // const provider = new GoogleAuthProvider();
 
-    console.log("app initialized...");
+    // console.log("app initialized...");
 
     // get elements
     const email = document.getElementById("email");
