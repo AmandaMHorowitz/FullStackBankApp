@@ -1,3 +1,5 @@
+import { createRoot } from 'react-dom';
+
 function Spa() {
     return (
       <HashRouter>
@@ -20,7 +22,6 @@ function Spa() {
     );
   }
   
-  ReactDOM.render(
-    <Spa/>,
-    document.getElementById('root')
-  );
+  const root = document.getElementById('root');
+  const rootElement = createRoot(root);
+  rootElement.render(<Spa />);
