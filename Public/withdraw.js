@@ -16,7 +16,7 @@ function Withdraw(){
 
 function WithdrawMsg(props){
   return(<>
-    <h5>Success</h5>
+    <h5>Success!</h5>
     <button type="submit" 
       className="btn btn-light" 
       onClick={() => {
@@ -31,32 +31,40 @@ function WithdrawMsg(props){
 function WithdrawForm(props){
   const [email, setEmail]   = React.useState('');
   const [amount, setAmount] = React.useState('');
+  const ctx = React.useContext(UserContext);
 
   function handle(){
+    let email = ctx.users[0].email
     fetch(`/account/update/${email}/-${amount}`)
     .then(response => response.text())
     .then(text => {
         try {
             const data = JSON.parse(text);
-            const balance = data.value.balance;  // Extract the balance
-            props.setStatus('New Balance: $' + balance);
+            props.setStatus(JSON.stringify(data.amount));
             props.setShow(false);
             console.log('JSON:', data);
         } catch(err) {
-            props.setStatus('Withdraw failed')
+            props.setStatus('Deposit failed')
             console.log('err:', text);
         }
     });
   }
 
-
+  if(ctx.users[0].email==''){return<>Log in to continue</>} else {
   return(<>
+    Select amount to withdraw<br/>
+    <input type="number" min="1"
+      className="form-control" 
+      placeholder="Enter amount" 
+      value={amount} 
+      onChange={e => setAmount(e.currentTarget.value)}/><br/>
 
-    Email<br/>
-    <input type="input" className="form-control" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
-    Amount<br/>
-    <input type="number" className="form-control" placeholder="Enter amount" value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
-    <button type="submit" className="btn btn-light" onClick={handle}>Withdraw</button>
+    <button type="submit" 
+      className="btn btn-light" 
+      onClick={handle}>
+        Withdraw
+    </button>
 
   </>);
+  }
 }
