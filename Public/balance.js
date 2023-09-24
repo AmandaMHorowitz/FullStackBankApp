@@ -1,55 +1,68 @@
-function Balance(){
-  const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');  
-
-  return (
-    <Card
-      bgcolor="dark"
-      header="Balance"
-      status={status}
-      body={show ?
-        <BalanceForm setShow={setShow} setStatus={setStatus}/> :
-        <BalanceMsg setShow={setShow} setStatus={setStatus}/>}
-    />
-  )
-
-}
-
-function BalanceMsg(props){
-  return(<>
-    <h5>Success!</h5>
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={() => {
-        props.setShow(true);
-        props.setStatus('');
-      }}>
-        Check balance again
-    </button>
-  </>);
-}
-
-function BalanceForm(props){
+function Balance() {
   const ctx = React.useContext(UserContext);
+  const [show, setShow] = React.useState(true)
+  const [status, setStatus] = React.useState('')
+  const [balance, setBalance] = React.useState('')
+  const[loaded, setLoaded] = React.useState(false);
   
-  function handle(){
-    let email = ctx.users[0].email
-    fetch(`/account/findOne/${email}`)
+  React.useEffect(() => {
+    const navCreateAccount = document.getElementById('nav-create-account');
+    const navLogin = document.getElementById('nav-login');
+    const navDeposit = document.getElementById('nav-deposit');
+    const navWithdraw = document.getElementById('nav-withdraw');
+    const navBalance = document.getElementById('nav-balance');
+    const navAllData = document.getElementById('nav-allData');
+    const navLogout = document.getElementById('nav-logout');
+
+    navCreateAccount.style.display = "none";
+    navLogin.style.display = "none";
+    navDeposit.style.display = "block";
+    navWithdraw.style.display = "block";
+    navBalance.style.display = "block";
+    navAllData.style.display = "block";
+    navLogout.style.display = "block";
+
+    // Get Logged in user from MongoDB
+    fetch(`/account/findOne/${ctx.email}`)
     .then(response => response.text())
     .then(text => {
-        
-            const data = JSON.parse(text);
-            props.setStatus('balance: ' + data.balance);
-            props.setShow(false);
-            console.log(data.balance);
+      try {
+        const data = JSON.parse(text)
+        setBalance(data.balance)
+        if(data?.message){
+        console.log(data.message)
         }
-    );
-  }
+        console.log('JSON:', JSON.stringify(data))
+      } catch (err) {
+        console.log('err:', text)
+      }
+    })
+    setLoaded(true);
+  },[loaded])
 
-  if(ctx.users[0].email==''){return<>Log in to continue</>} else {
-  return (<>
-    <button type="submit" className="btn btn-light" onClick={handle}>Check Balance</button>
-  </>);
-  }
-  
+  const spinner =  <h1>Loading...</h1>;
+
+  return (
+    <>
+    {!loaded ? <div>{spinner}</div> : (
+      <>
+      <div className="hi-msg">Hello {ctx.user}</div> : <div></div>
+      <Card
+        txtcolor="white"
+        bgcolor="dark"
+        header="Balance"
+        body={
+          <>
+            <ul className="list-group list-group-flush make-center bg-dark">
+              <li className="list-group-item make-center">
+                Current Account Balance: ${balance}
+              </li>
+            </ul>
+          </>
+        }
+      />
+      </>
+    )}
+    </>
+  );
 }

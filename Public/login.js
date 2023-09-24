@@ -1,95 +1,168 @@
-function Login(){
-  const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');  
- 
-  return (
 
-    <Card 
+function Login() { 
+  const [show, setShow] = React.useState(true);
+  const [status, setStatus] = React.useState("");
+  const [success, setSuccess] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
+  const [user, setUser] = React.useState("");
+  const [message, setMessage] = React.useState("");
+  const ctx = React.useContext(UserContext);
+  
+  return (
+    <>
+    {loaded? <div className="hi-msg">Hello {user}</div> : <div></div>}
+    
+    <div className="login-card">
+    <Card
+      txtcolor="white"
       bgcolor="dark"
       header="Login"
       status={status}
-      body={show ? (
-        
-        <LoginForm setShow={setShow} setStatus={setStatus}/> ): (
-        <LoginMsg setShow={setShow} setStatus={setStatus}/> )
+      body={
+        show ? (
+          <LoginForm setUser={setUser} setShow={setShow} setStatus={setStatus} />
+        ) : (
+          <LoginMessage setShow={setShow} setStatus={setStatus} />
+        )
       }
-    />  
-  ) 
-}
+    />
+    </div>
+    </>
+  );
 
-function LoginMsg(props){
-      const ctx = React.useContext(UserContext);
-      const [username, SetUsername] = React.useState('');
-      
-  return(<>
-    <h5>welcome!</h5>
-    <button type="submit"
-      id="logout" 
-      className="btn btn-light" 
-      onClick={() => {props.setShow (true), logout();}}>
-        Log out
-    </button>
-  </>);
-
-  function logout(){
-    let nothing = ctx.users[0].email = '';
-     SetUsername(nothing);
-     ctx.users[0].email = nothing;
-     console.log(ctx.users[0].email);
-     props.setStatus('');
-    };
-}
-
-function LoginForm(props){
-  const [email, setEmail]       = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [username, SetUsername] = React.useState('');
-  const ctx = React.useContext(UserContext);
-
-
- function handle(){
-    fetch(`/account/login/${email}/${password}`)
-    .then(response => response.text())
-    .then(text => {
-        try {
-            const data = JSON.parse(text);
-            props.setStatus('account: ' + data.name);
-            props.setShow(false);
-            console.log('JSON:', data);
-        } catch(err) {
-            props.setStatus('error account not found')
-            console.log('error:', text);
-        }
-    });
-
-  };
- function display(){
-  let total= ctx.users[0].email = email;
-  SetUsername(total);
-  ctx.users[0].email = total;
-  console.log(ctx.users[0].email);
- };
-
-
-  return (<>
-
-    Email<br/>
-    <input type="input" 
-      id="email"
-      className="form-control" 
-      placeholder="Enter email" 
-      value={email} 
-      onChange={e => setEmail(e.currentTarget.value)}/><br/>
-
-    Password<br/>
-    <input type="password" 
-      id="password"
-      className="form-control" 
-      placeholder="Enter password" 
-      value={password} 
-      onChange={e => setPassword(e.currentTarget.value)}/><br/>
-
-    <button id="login" type="submit" className="btn btn-light" onClick={() => {display(), handle();}}>Login</button>
-  </>);
   
+
+  function LoginForm() {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [disabled, setDisabled] = React.useState(true);
+
+    function handleLogin() {
+      //console.log(email, password);
+
+      // validate fields
+      if (!validate(email, "email")) return;
+      if (!validate(password, "password")) return;
+      
+      // Firebase auth
+      const auth = firebase.auth();
+      const promise = auth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+      firebase.auth().onAuthStateChanged((firebaseUser) => {
+        if (firebaseUser) {
+          console.log(firebaseUser);
+          console.log(email, password);
+
+          // get account info from MongoDB
+          fetch(`/account/login/${email}/${password}`)
+          .then(response => response.text())
+          .then(text => {
+            //console.log(text)
+            try{
+              const data = JSON.parse(text);
+              //console.log(data)
+              setShow(false);
+              setUser(data.name);
+              setLoaded(true);
+              setSuccess(true);
+              ctx.user = data.name;
+              ctx.email = data.email;
+              //console.log('JSON:', data); 
+            } catch {
+              setMessage(text);
+              setSuccess(false);
+              setShow(false);
+            }
+          });
+        } else {
+          //error codes
+          setStatus("unAuthorized User. Please create a new account.");   
+          setTimeout(() => setStatus(""), 3000);
+        }
+      });
+      promise.catch((e) => {
+        //setSuccess(false);
+        setLoaded(false);
+        console.log(e.message)});       
+    }
+
+    return (
+      <>
+        Email
+        <br />
+        <input
+          type="input"
+          className="form-control"
+          id="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.currentTarget.value);
+            setDisabled(false);
+          }}
+        />
+        <br />
+        Password
+        <br />
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.currentTarget.value);
+            setDisabled(false);
+          }}
+        />
+        <br />
+        <div className="login-btn">
+          <button
+            type="submit"
+            className="btn btn-light"
+            onClick={handleLogin}
+            disabled={disabled}
+            
+          >Login</button>
+        </div>
+      </>
+    );
+  }
+
+  function LoginMessage(props) {
+    return success ? (
+      <>
+        <h5>Congratulations! You have successfully logged in.</h5>
+        <a href="#/balance/">
+          <button
+          type="submit"
+          className="btn btn-light"
+          onClick={() => props.setShow(true)}
+          >Access Your Account Info</button>
+        </a>
+      </>
+    ) : (
+      <>
+        <h5>{message}</h5>
+        <button
+          type="submit"
+          className="btn btn-light"
+          onClick={() => props.setShow(true)}
+        >Try Again</button>
+      </>
+    );
+  }
+
+  function validate(field, label) {
+    if (!field) {
+      setStatus("Error: " + label + " is required");
+      setTimeout(() => setStatus(""), 3000);
+      return false;
+    }
+    return true;
+  }
 }
+
+

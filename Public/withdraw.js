@@ -1,70 +1,130 @@
-function Withdraw(){
-  const [show, setShow]     = React.useState(true);
-  const [status, setStatus] = React.useState('');  
+function Withdraw() {
+  const[balance, setBalance] = React.useState("");
+  const [show, setShow] = React.useState(true);
+  const [status, setStatus] = React.useState("");
+  const ctx = React.useContext(UserContext);
+  const[loaded, setLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    // get logged in user info from MongoDB
+    fetch(`/account/findOne/${ctx.email}`)
+    .then(response => response.text())
+    .then(text => {
+      try {
+        const data = JSON.parse(text)
+        setBalance(data.balance)
+        console.log('JSON:', data)
+      } catch (err) {
+        console.log('err:', text)
+      }
+    })
+    setLoaded(true);
+  },[loaded])
+
 
   return (
+    <>
+    <div className="hi-msg">Hello {ctx.user}</div> : <div></div>
     <Card
+      txtcolor="white"
       bgcolor="dark"
       header="Withdraw"
       status={status}
-      body={show ? 
-        <WithdrawForm setShow={setShow} setStatus={setStatus}/> :
-        <WithdrawMsg setShow={setShow} setStatus={setStatus}/>}
+      body={
+        show ? (
+          <WithdrawForm setShow={setShow} setStatus={setStatus}  />
+        ) : (
+          <WithdrawMessage setShow={setShow} setStatus={setStatus}/>
+        )
+      }
     />
-  )
-}
+    </>
+  );
 
-function WithdrawMsg(props){
-  return(<>
-    <h5>Success!</h5>
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={() => {
-        props.setShow(true);
-        props.setStatus('');
-      }}>
-        Withdraw again
-    </button>
-  </>);
-}
+  function WithdrawForm() {
+    const [withdraw, setWithdraw] = React.useState("");
+    const [disabled, setDisabled] = React.useState(true);
 
-function WithdrawForm(props){
-  const [email, setEmail]   = React.useState('');
-  const [amount, setAmount] = React.useState('');
-  const ctx = React.useContext(UserContext);
+    function handleWithdraw() {
+      //validate input from user
+      if (!validate(Number(withdraw), balance)) return;
 
-  function handle(){
-    let email = ctx.users[0].email
-    fetch(`/account/update/${email}/-${amount}`)
-    .then(response => response.text())
-    .then(text => {
+      // update user balance in MongoDB 
+      fetch(`/account/update/${ctx.email}/-${Number(withdraw)}`)
+      .then(response => response.text())
+      .then(text => {
         try {
-            const data = JSON.parse(text);
-            props.setStatus(JSON.stringify(data.amount));
-            props.setShow(false);
-            console.log('JSON:', data);
+          const data = JSON.parse(text);
+          setShow(false);
+          setAmount(data.amount);
+          console.log('JSON:', data);
         } catch(err) {
-            props.setStatus('Deposit failed')
-            console.log('err:', text);
+          console.log('err:', text);
         }
-    });
+      });
+      setBalance(balance - withdraw);
+    }
+
+    return (
+      <>
+        <span className="balance-information">Account Balance ${balance}</span>
+        <br />
+        <br />
+        Withdrawal Amount
+        <input
+          type="input"
+          className="form-control"
+          id="withdraw"
+          placeholder="Withdrawal Amount"
+          value={withdraw}
+          onChange={(e) => {
+            setWithdraw(e.currentTarget.value);
+            setDisabled(false);
+          }}
+        />
+        <br />
+        <button
+          type="submit"
+          className="btn btn-light"
+          onClick={handleWithdraw}
+          disabled={disabled}
+        >Withdraw</button>
+      </>
+    );
   }
 
-  if(ctx.users[0].email==''){return<>Log in to continue</>} else {
-  return(<>
-    Select amount to withdraw<br/>
-    <input type="number" min="1"
-      className="form-control" 
-      placeholder="Enter amount" 
-      value={amount} 
-      onChange={e => setAmount(e.currentTarget.value)}/><br/>
+  function WithdrawMessage(props) {
+    return (
+      <>
+        <span className="balance-information">Account Balance ${balance}</span>
+        <br />
+        <br />
+        <h5>Withdrawal Successful!</h5>
+        <button
+          type="submit"
+          className="btn btn-light"
+          onClick={() => props.setShow(true)}
+        >Withdraw Again</button>
+      </>
+    );
+  }
 
-    <button type="submit" 
-      className="btn btn-light" 
-      onClick={handle}>
-        Withdraw
-    </button>
-
-  </>);
+  function validate(withdraw, balance) {
+    if (isNaN(withdraw)) {
+      setStatus("Error: did not enter a valid number");
+      setTimeout(() => setStatus(""), 3000);
+      return false;
+    }
+    if (withdraw > balance) {
+      setStatus("Error: Insuffienct funds");
+      setTimeout(() => setStatus(""), 3000);
+      return false;
+    }
+    if (withdraw < 1) {
+      setStatus("Error: Lowest withdrawl amount is $1");
+      setTimeout(() => setStatus(""), 3000);
+      return false;
+    }
+    return true;
   }
 }
