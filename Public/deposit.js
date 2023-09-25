@@ -23,7 +23,7 @@ function Deposit() {
   
   return (
     <>
-    <div className="hi-msg">User {ctx.user}</div>
+    <div className="hi-msg">User: {ctx.user}</div>
     <Card
       txtcolor="white"
       bgcolor="dark"

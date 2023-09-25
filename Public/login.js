@@ -10,7 +10,7 @@ function Login() {
   
   return (
     <>
-    {loaded? <div className="hi-msg">User {user}</div> : <div></div>}
+    {loaded? <div className="hi-msg">User: {user}</div> : <div></div>}
     
     <div className="login-card">
     <Card

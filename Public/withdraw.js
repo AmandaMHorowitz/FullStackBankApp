@@ -22,7 +22,7 @@ function Withdraw() {
 
   return (
     <>
-    <div className="hi-msg">User {ctx.user}</div> : <div></div>
+    <div className="hi-msg">User: {ctx.user}</div> : <div></div>
     <Card
       txtcolor="white"
       bgcolor="dark"
