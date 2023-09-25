@@ -21,6 +21,7 @@ Once you initialize npm and install the required dependencies, initialize the pr
 ```javascript
 node index.js
 ```
+![Screenshot 2023-09-25 185839](https://github.com/AmandaMHorowitz/FullStackBankApp/assets/120349151/86f2b45f-d213-4871-90e0-8ea046b3fa81)
 
 ## Future State
 
