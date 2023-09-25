@@ -32,50 +32,10 @@ function AllData() {
     
     return (
       <>
-      <div className="allData-display">
-        <div className="allData-btn-container first-btn">
-          <button type="button" className="btn btn-success allData-btn" onClick={() => setView1(true)}>User Data</button>
-        </div>
-        <div className="allData-btn-container">
-          <button type="button" className="btn btn-secondary allData-btn" onClick={() => setView1(false)}>Raw Data</button>
-        </div>
-      </div>
-      {!view1 ? (
         <div className="allData-json">
           <h5>All User Data:</h5>
           {JSON.stringify(data)}
         </div>
-        )
-        :
-        ( <>
-        <div className="allData-cards">
-          {loaded ?
-            ((data.map((user, index) => {
-              return (
-                <Card
-                txtcolor="black"
-                bgcolor="white"
-                header="Account Info"
-                title={`Account owner: ${user.name.toUpperCase()}`}
-                key={user._id}
-                body={
-                  <>
-                  <ul className="list-group list-group-flush" key={index}>
-                    <li className="list-group-item mongodbId">User ID: {user._id}</li>
-                    <li className="list-group-item email">Email: {user.email}</li>
-                    <li className="list-group-item password">Password: {user.password}</li>
-                    <li className="list-group-item">Account balance: ${user.balance}</li>
-                  </ul>
-                  </>
-                }/>
-              );
-            })))
-            : 
-            (spinner)
-          }
-        </div>
-        </>)
-      }
       </>
     )
   }
