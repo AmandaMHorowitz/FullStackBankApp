@@ -31,8 +31,8 @@
   
   .list-group-item.make-center {
     text-align: center;
-    color: white;
-    background-color: #332D2D;
+    color: black;
+    background-color: white;
     font-size: 25px;
   }
   
@@ -43,17 +43,6 @@
   
   .card-body .balance-information {
     font-size: 25px;
-  }
-  
-  .list-group-item.movement.deposit {
-    background-color: rgb(112, 192, 112);
-    display: flex;
-    justify-content: space-between;
-  }
-  .list-group-item.movement.withdraw {
-    background-color: rgb(173, 107, 107);
-    display: flex;
-    justify-content: space-between;
   }
   
   .movements-list {
@@ -114,13 +103,6 @@
   .allData-btn-container {
     padding-left: 10px
   }
-  
-  .allData-cards {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: calc(100% / 9);
-  }
-  
   
   #nav-home{
     pointer-events: none;
