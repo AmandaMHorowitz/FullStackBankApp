@@ -6,7 +6,7 @@ function Deposit() {
   const ctx = React.useContext(UserContext);
 
   React.useEffect(() => {
-    // get logged in user from MongoDB
+    
     fetch(`/account/findOne/${ctx.email}`)
     .then(response => response.text())
     .then(text => {
@@ -23,7 +23,7 @@ function Deposit() {
   
   return (
     <>
-    <div className="hi-msg">Hello {ctx.user}</div>
+    <div className="hi-msg">User {ctx.user}</div>
     <Card
       txtcolor="white"
       bgcolor="dark"
@@ -44,10 +44,8 @@ function Deposit() {
     const [disabled, setDisabled] = React.useState(true);
 
     function handleDeposit() {
-      // validate amount entered into input field
       if (!validate(Number(deposit))) return;
 
-      // update balance in MongoDB
       fetch(`/account/update/${ctx.email}/${deposit}`)
       .then(response => response.text())
       .then(text => {
@@ -67,30 +65,16 @@ function Deposit() {
 
     return (
       <>
-        <span className="balance-information">Account Balance
-         ${balance} 
-         </span>
-        <br />
+        <span className="balance-information">Account Balance ${balance}</span>
         <br />
         Deposit Amount
-        <input
-          type="input"
-          className="form-control"
-          id="deposit"
-          placeholder="Deposit Amount"
-          value={deposit}
-          onChange={(e) => {
+        <input type="input" className="form-control" id="deposit" placeholder="Deposit Amount" value={deposit} onChange={(e) => {
             setDeposit(e.currentTarget.value);
             setDisabled(false);
           }}
         />
         <br />
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={handleDeposit}
-          disabled={disabled}
-        >Deposit</button>
+        <button type="submit" className="btn btn-light" onClick={handleDeposit} disabled={disabled}>Deposit</button>
       </>
     );
   }
@@ -100,13 +84,8 @@ function Deposit() {
       <>
         <span className="balance-information">Account Balance ${balance}</span>
         <br />
-        <br />
-        <h5>Congratulations! Your deposit was successful.</h5>
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={() => {props.setShow(true); props.setStatus('');}}
-        >Deposit Again</button>
+        <h5>Your deposit was successful.</h5>
+        <button type="submit" className="btn btn-light" onClick={() => {props.setShow(true); props.setStatus('');}}>Make another deposit</button>
       </>
     );
   }

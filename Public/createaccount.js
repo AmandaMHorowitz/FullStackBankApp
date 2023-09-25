@@ -60,13 +60,7 @@ function CreateAccount() {
       <>
         Name
         <br />
-        <input
-          type="input"
-          className="form-control"
-          id="name"
-          placeholder="Enter name"
-          value={name}
-          onChange={(e) => {
+        <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={(e) => {
             setName(e.currentTarget.value);
             setDisabled(false);
           }}
@@ -74,13 +68,7 @@ function CreateAccount() {
         <br />
         Email address
         <br />
-        <input
-          type="input"
-          className="form-control"
-          id="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => {
+        <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={(e) => {
             setEmail(e.currentTarget.value);
             setDisabled(false);
           }}
@@ -88,24 +76,13 @@ function CreateAccount() {
         <br />
         Password
         <br />
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          placeholder="Must be 8 or more characters"
-          value={password}
-          onChange={(e) => {
+        <input type="password" className="form-control" id="password" placeholder="Must be 8+ characters" value={password} onChange={(e) => {
             setPassword(e.currentTarget.value);
             setDisabled(false);
           }}
         />
         <br />
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={handleCreate}
-          disabled={disabled}
-        >Create Account</button>
+        <button type="submit" className="btn btn-light" onClick={handleCreate} disabled={disabled}>Create Account</button>
       </>
     );
   }
@@ -113,13 +90,9 @@ function CreateAccount() {
   function CreateMessage() {
     return (
       <>
-        <h5 id="status">Congratulations, You have successfully created your account!</h5>
+        <h5 id="status">You created your account.</h5>
         <a href="#/login/">
-          <button
-            type="submit"
-            className="btn btn-light"
-            id="status-btn"
-          >Click Here to Log In</button>
+          <button type="submit" className="btn btn-light" id="status-btn" >Click to Log In</button>
         </a>
       </>
     );

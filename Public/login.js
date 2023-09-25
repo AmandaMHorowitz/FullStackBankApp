@@ -10,7 +10,7 @@ function Login() {
   
   return (
     <>
-    {loaded? <div className="hi-msg">Hello {user}</div> : <div></div>}
+    {loaded? <div className="hi-msg">User {user}</div> : <div></div>}
     
     <div className="login-card">
     <Card
@@ -30,21 +30,15 @@ function Login() {
     </>
   );
 
-  
-
   function LoginForm() {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [disabled, setDisabled] = React.useState(true);
 
     function handleLogin() {
-      //console.log(email, password);
-
-      // validate fields
       if (!validate(email, "email")) return;
       if (!validate(password, "password")) return;
-      
-      // Firebase auth
+ 
       const auth = firebase.auth();
       const promise = auth.signInWithEmailAndPassword(
         email,
@@ -54,22 +48,17 @@ function Login() {
         if (firebaseUser) {
           console.log(firebaseUser);
           console.log(email, password);
-
-          // get account info from MongoDB
           fetch(`/account/login/${email}/${password}`)
           .then(response => response.text())
           .then(text => {
-            //console.log(text)
             try{
               const data = JSON.parse(text);
-              //console.log(data)
               setShow(false);
               setUser(data.name);
               setLoaded(true);
               setSuccess(true);
               ctx.user = data.name;
               ctx.email = data.email;
-              //console.log('JSON:', data); 
             } catch {
               setMessage(text);
               setSuccess(false);
@@ -77,13 +66,11 @@ function Login() {
             }
           });
         } else {
-          //error codes
-          setStatus("unAuthorized User. Please create a new account.");   
+          setStatus("Unauthorized Username. Please create an account.");   
           setTimeout(() => setStatus(""), 3000);
         }
       });
       promise.catch((e) => {
-        //setSuccess(false);
         setLoaded(false);
         console.log(e.message)});       
     }
@@ -92,13 +79,7 @@ function Login() {
       <>
         Email
         <br />
-        <input
-          type="input"
-          className="form-control"
-          id="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => {
+        <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={(e) => {
             setEmail(e.currentTarget.value);
             setDisabled(false);
           }}
@@ -106,26 +87,14 @@ function Login() {
         <br />
         Password
         <br />
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => {
+        <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={(e) => {
             setPassword(e.currentTarget.value);
             setDisabled(false);
           }}
         />
         <br />
         <div className="login-btn">
-          <button
-            type="submit"
-            className="btn btn-light"
-            onClick={handleLogin}
-            disabled={disabled}
-            
-          >Login</button>
+          <button type="submit" className="btn btn-light" onClick={handleLogin} disabled={disabled}>Login</button>
         </div>
       </>
     );
@@ -134,23 +103,15 @@ function Login() {
   function LoginMessage(props) {
     return success ? (
       <>
-        <h5>Congratulations! You have successfully logged in.</h5>
+        <h5>You have successfully logged in.</h5>
         <a href="#/balance/">
-          <button
-          type="submit"
-          className="btn btn-light"
-          onClick={() => props.setShow(true)}
-          >Access Your Account Info</button>
+          <button type="submit" className="btn btn-light" onClick={() => props.setShow(true)}>Proceed to Account</button>
         </a>
       </>
     ) : (
       <>
         <h5>{message}</h5>
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={() => props.setShow(true)}
-        >Try Again</button>
+        <button type="submit" className="btn btn-light" onClick={() => props.setShow(true)}>Try Again</button>
       </>
     );
   }

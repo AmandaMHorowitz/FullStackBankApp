@@ -18,8 +18,8 @@ app.get('/account/create/:name/:email/:password', function(req, res) {
 
             // if user exists, return error message
             if(users.length > 0){
-                console.log('You have already created an account.  Please Log In.');
-                res.send({message: "You already created an account.  Please Log In."});    
+                console.log('You already have an account. Please use Login.');
+                res.send({message: "You already have an account. Please use Login."});    
             }
             else{
              // else create user
@@ -44,7 +44,7 @@ app.get('/account/login/:email/:password', function (req, res) {
                     res.send(JSON.stringify(user));
                 }
                 else{
-                    res.send("Incorrect password.  Please try again.");
+                    res.send("Incorrect password.");
                 }
             }
             else{

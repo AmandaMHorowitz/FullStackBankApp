@@ -4,22 +4,20 @@ function AllData() {
     const[loaded, setLoaded] = React.useState(false);
   
     React.useEffect(() => {
-      // fetch all accounts from API
       fetch('/account/all')
         .then(response => response.json())
         .then(data => {
-          //console.log(data);
           setData(data);
         })
       setLoaded(true);
   
-      const navCreateAccount = document.getElementById('nav-create-account');
-      const navLogin = document.getElementById('nav-login');
-      const navDeposit = document.getElementById('nav-deposit');
-      const navWithdraw = document.getElementById('nav-withdraw');
-      const navBalance = document.getElementById('nav-balance');
-      const navAllData = document.getElementById('nav-allData');
-      const navLogout = document.getElementById('nav-logout');
+      const navCreateAccount  = document.getElementById('nav-create-account');
+      const navLogin          = document.getElementById('nav-login');
+      const navDeposit        = document.getElementById('nav-deposit');
+      const navWithdraw       = document.getElementById('nav-withdraw');
+      const navBalance        = document.getElementById('nav-balance');
+      const navAllData        = document.getElementById('nav-allData');
+      const navLogout         = document.getElementById('nav-logout');
       
       navCreateAccount.style.display = "none";
       navLogin.style.display = "none";

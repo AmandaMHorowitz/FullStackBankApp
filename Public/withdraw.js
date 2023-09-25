@@ -6,7 +6,6 @@ function Withdraw() {
   const[loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // get logged in user info from MongoDB
     fetch(`/account/findOne/${ctx.email}`)
     .then(response => response.text())
     .then(text => {
@@ -21,10 +20,9 @@ function Withdraw() {
     setLoaded(true);
   },[loaded])
 
-
   return (
     <>
-    <div className="hi-msg">Hello {ctx.user}</div> : <div></div>
+    <div className="hi-msg">User {ctx.user}</div> : <div></div>
     <Card
       txtcolor="white"
       bgcolor="dark"
@@ -46,10 +44,8 @@ function Withdraw() {
     const [disabled, setDisabled] = React.useState(true);
 
     function handleWithdraw() {
-      //validate input from user
       if (!validate(Number(withdraw), balance)) return;
 
-      // update user balance in MongoDB 
       fetch(`/account/update/${ctx.email}/-${Number(withdraw)}`)
       .then(response => response.text())
       .then(text => {
@@ -69,26 +65,14 @@ function Withdraw() {
       <>
         <span className="balance-information">Account Balance ${balance}</span>
         <br />
-        <br />
         Withdrawal Amount
-        <input
-          type="input"
-          className="form-control"
-          id="withdraw"
-          placeholder="Withdrawal Amount"
-          value={withdraw}
-          onChange={(e) => {
+        <input type="input" className="form-control" id="withdraw" placeholder="Withdrawal Amount" value={withdraw} onChange={(e) => {
             setWithdraw(e.currentTarget.value);
             setDisabled(false);
           }}
         />
         <br />
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={handleWithdraw}
-          disabled={disabled}
-        >Withdraw</button>
+        <button type="submit" className="btn btn-light" onClick={handleWithdraw} disabled={disabled} >Withdraw</button>
       </>
     );
   }
@@ -98,13 +82,8 @@ function Withdraw() {
       <>
         <span className="balance-information">Account Balance ${balance}</span>
         <br />
-        <br />
-        <h5>Withdrawal Successful!</h5>
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={() => props.setShow(true)}
-        >Withdraw Again</button>
+        <h5>Withdrawal Successful</h5>
+        <button type="submit" className="btn btn-light" onClick={() => props.setShow(true)}>Make another withdrawal</button>
       </>
     );
   }
