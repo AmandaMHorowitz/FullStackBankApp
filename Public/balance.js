@@ -52,7 +52,7 @@ function Balance() {
         header="Balance"
         body={
           <>
-            <ul className="list-group list-group-flush make-center bg-light">
+            <ul className="list-group list-group-flush make-center text-black bg-light">
               <li className="list-group-item make-center">Current Account Balance: ${balance}</li>
             </ul>
           </>
