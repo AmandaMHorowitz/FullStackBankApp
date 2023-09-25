@@ -22,7 +22,6 @@ function Balance() {
     navAllData.style.display = "block";
     navLogout.style.display = "block";
 
-    // Get Logged in user from MongoDB
     fetch(`/account/findOne/${ctx.email}`)
     .then(response => response.text())
     .then(text => {
@@ -53,7 +52,7 @@ function Balance() {
         header="Balance"
         body={
           <>
-            <ul className="list-group list-group-flush make-center bg-dark">
+            <ul className="list-group list-group-flush make-center bg-light">
               <li className="list-group-item make-center">
                 Current Account Balance: ${balance}
               </li>
