@@ -1,8 +1,3 @@
-Installation Guidelines: Clear instructions on how to get your project up and running (e.g., git clone, git pull, npm init).
-Screenshots: Screenshots or a GIF of your project in action.
-Technology used: Your technology stack, listed out. 
-Features: Your project’s features, and any future features you would like to include.
-
 # FullStackBankApp
 
 This app is a full stack banking app with an operational database, which records user data and saves it across login occurences, and a fully functional front-end UI.
