@@ -2,9 +2,6 @@ Installation Guidelines: Clear instructions on how to get your project up and ru
 Screenshots: Screenshots or a GIF of your project in action.
 Technology used: Your technology stack, listed out. 
 Features: Your project’s features, and any future features you would like to include.
-License: Details of under what type of license (e.g., MIT, Apache) your project is listed. If you don’t know, take a look at your package.json—it will have the default license that you chose when you created your project.
-
-
 
 # FullStackBankApp
 
@@ -24,26 +21,16 @@ npm install firebase-admin
 
 ## Usage
 
-```python
-import foobar
+Once you initialize npm and install the required dependencies, initialize the project by running the index.js file and running locally on localhost:3000
 
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
+```javascript
+node index.js
 ```
 
-## Contributing
+## Future State
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+For continued work, I would like to continue updating the UI as well as add features like administrator roles to the security layer.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[ISC](https://choosealicense.com/licenses/isc/)
