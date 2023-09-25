@@ -49,7 +49,7 @@ function Balance() {
       <Card
         txtcolor="white"
         bgcolor="dark"
-        header="Balance"
+        header="Current Balance"
         body={
           <>
             <ul className="list-group list-group-flush make-center text-black bg-light">

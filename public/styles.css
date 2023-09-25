@@ -31,8 +31,8 @@
   
   .list-group-item.make-center {
     text-align: center;
-    color: black;
-    background-color: lightgray;
+    color: white;
+    background-color: #332D2D;
     font-size: 25px;
   }
   
