@@ -1,0 +1,17 @@
+<VirtualHost *:443>
+    ServerName amanda-horowitzfullstackbankingapplication.com
+    SSLEngine on
+    SSLCertificateFile "/opt/bitnami/apache/conf/amanda-horowitzfullstackbankingapplication.com.crt"
+    SSLCertificateKeyFile "/opt/bitnami/apache/conf/amanda-horowitzfullstackbankingapplication.com.key"
+    # Other directives here
+</VirtualHost> 
+
+<VirtualHost *:443>
+    ServerName amanda-horowitzfullstackbankingapplication.com
+    ProxyPass / http://localhost:3000/
+    ProxyPassReverse / http://localhost:3000/
+    SSLEngine on
+    SSLCertificateFile "/opt/bitnami/apache/conf/amanda-horowitzfullstackbankingapplication.com.crt"
+    SSLCertificateKeyFile "/opt/bitnami/apache/conf/amanda-horowitzfullstackbankingapplication.com.key"
+    # Other directives here
+</VirtualHost> 
